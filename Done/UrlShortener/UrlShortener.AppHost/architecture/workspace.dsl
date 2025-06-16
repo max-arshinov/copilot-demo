@@ -16,6 +16,7 @@ workspace "Url Shortener" {
         }
     
         urlShortener = softwareSystem "Url Shortener" {
+           !adrs ./adrs
             group DBs {
                 linkDb = container "Links" "Stores links." "ScyllaDB" "Database"
                 userDb = container "Users" "Stores user info." "PostgreSQL" "Database"

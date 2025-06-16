@@ -1,0 +1,574 @@
+{
+  "configuration" : { },
+  "description" : "Description",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedDate" : "2025-06-16T21:12:26Z",
+  "model" : {
+    "softwareSystems" : [ {
+      "description" : "Google, Facebook, GitHub",
+      "documentation" : { },
+      "id" : "1",
+      "location" : "Unspecified",
+      "name" : "Auth Providers",
+      "properties" : {
+        "structurizr.dsl.identifier" : "authproviders"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "documentation" : { },
+        "id" : "3",
+        "name" : "Write API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "hitcounter.writeapi"
+        },
+        "tags" : "Element,Container"
+      } ],
+      "documentation" : { },
+      "id" : "2",
+      "location" : "Unspecified",
+      "name" : "Web Analytics",
+      "properties" : {
+        "structurizr.dsl.identifier" : "hitcounter"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Stores links.",
+        "documentation" : { },
+        "group" : "DBs",
+        "id" : "5",
+        "name" : "Links",
+        "properties" : {
+          "structurizr.dsl.identifier" : "urlshortener.linkdb"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "ScyllaDB"
+      }, {
+        "description" : "Stores user info.",
+        "documentation" : { },
+        "group" : "DBs",
+        "id" : "6",
+        "name" : "Users",
+        "properties" : {
+          "structurizr.dsl.identifier" : "urlshortener.userdb"
+        },
+        "tags" : "Element,Container,Database",
+        "technology" : "PostgreSQL"
+      }, {
+        "components" : [ {
+          "description" : "In-Memory",
+          "documentation" : { },
+          "id" : "8",
+          "name" : "In-Memory LRU Cache",
+          "properties" : {
+            "structurizr.dsl.identifier" : "urlshortener.readapi.cache"
+          },
+          "tags" : "Element,Component"
+        }, {
+          "documentation" : { },
+          "id" : "9",
+          "name" : "UrlController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "urlshortener.readapi.urlcontroller"
+          },
+          "relationships" : [ {
+            "description" : "Reads URLs from and writes to",
+            "destinationId" : "8",
+            "id" : "10",
+            "properties" : {
+              "structurizr.dsl.identifier" : "4152afec-c12e-4d6f-ad86-4a294533779c"
+            },
+            "sourceId" : "9",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Reads URLs from",
+            "destinationId" : "5",
+            "id" : "11",
+            "properties" : {
+              "structurizr.dsl.identifier" : "59248fc6-1e39-4297-bc1d-de4723d346af"
+            },
+            "sourceId" : "9",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Sends visit statistics",
+            "destinationId" : "3",
+            "id" : "21",
+            "properties" : {
+              "structurizr.dsl.identifier" : "988b5eef-eabc-49e6-b7ff-ef32297a03c7"
+            },
+            "sourceId" : "9",
+            "tags" : "Relationship"
+          }, {
+            "description" : "Sends visit statistics",
+            "destinationId" : "2",
+            "id" : "22",
+            "linkedRelationshipId" : "21",
+            "sourceId" : "9"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Redirects short URLs to long ones.",
+        "documentation" : { },
+        "group" : "API",
+        "id" : "7",
+        "name" : "Read API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "urlshortener.readapi"
+        },
+        "relationships" : [ {
+          "description" : "Reads URLs from",
+          "destinationId" : "5",
+          "id" : "12",
+          "linkedRelationshipId" : "11",
+          "sourceId" : "7"
+        }, {
+          "description" : "Sends visit statistics",
+          "destinationId" : "3",
+          "id" : "23",
+          "linkedRelationshipId" : "21",
+          "sourceId" : "7"
+        }, {
+          "description" : "Sends visit statistics",
+          "destinationId" : "2",
+          "id" : "24",
+          "linkedRelationshipId" : "21",
+          "sourceId" : "7"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "C#/.NET 9"
+      }, {
+        "description" : "Provides authentication, user management, and fine-grained authorization.",
+        "documentation" : { },
+        "group" : "API",
+        "id" : "13",
+        "name" : "Auth & Identity Management",
+        "properties" : {
+          "structurizr.dsl.identifier" : "urlshortener.authapi"
+        },
+        "relationships" : [ {
+          "description" : "Authenticates with",
+          "destinationId" : "1",
+          "id" : "14",
+          "properties" : {
+            "structurizr.dsl.identifier" : "9602dc24-0ac6-4576-8f9e-713c559ddacf"
+          },
+          "sourceId" : "13",
+          "tags" : "Relationship",
+          "technology" : "OAUTH2"
+        }, {
+          "description" : "Auth & Identity management",
+          "destinationId" : "6",
+          "id" : "16",
+          "properties" : {
+            "structurizr.dsl.identifier" : "e6ad8ad0-7a9d-4f04-b387-6640b4d1cebc"
+          },
+          "sourceId" : "13",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "KeyCloak"
+      }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "18",
+          "name" : "UrlController",
+          "properties" : {
+            "structurizr.dsl.identifier" : "urlshortener.writeapi.urlcontroller"
+          },
+          "relationships" : [ {
+            "description" : "Saves new links to the db",
+            "destinationId" : "5",
+            "id" : "19",
+            "properties" : {
+              "structurizr.dsl.identifier" : "24a17284-4d77-449d-8ec9-dee2b08ceff1"
+            },
+            "sourceId" : "18",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component"
+        } ],
+        "description" : "Creates short URLs.",
+        "documentation" : { },
+        "group" : "API",
+        "id" : "17",
+        "name" : "Write API",
+        "properties" : {
+          "structurizr.dsl.identifier" : "urlshortener.writeapi"
+        },
+        "relationships" : [ {
+          "description" : "Saves new links to the db",
+          "destinationId" : "5",
+          "id" : "20",
+          "linkedRelationshipId" : "19",
+          "sourceId" : "17"
+        } ],
+        "tags" : "Element,Container",
+        "technology" : "C#/.NET 9"
+      }, {
+        "description" : "Provides the URL shortener functionality to users via their web browsers.",
+        "documentation" : { },
+        "id" : "27",
+        "name" : "Web App",
+        "properties" : {
+          "structurizr.dsl.identifier" : "urlshortener.web"
+        },
+        "relationships" : [ {
+          "description" : "Authenticates the user",
+          "destinationId" : "13",
+          "id" : "28",
+          "properties" : {
+            "structurizr.dsl.identifier" : "74dbc281-5560-42e2-ac81-ff95abd4aa12"
+          },
+          "sourceId" : "27",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "Sends JSON requests",
+          "destinationId" : "18",
+          "id" : "29",
+          "properties" : {
+            "structurizr.dsl.identifier" : "2f9f84b9-246b-4d98-883e-e71bcf3c641e"
+          },
+          "sourceId" : "27",
+          "tags" : "Relationship",
+          "technology" : "HTTPS"
+        }, {
+          "description" : "Sends JSON requests",
+          "destinationId" : "17",
+          "id" : "30",
+          "linkedRelationshipId" : "29",
+          "sourceId" : "27",
+          "technology" : "HTTPS"
+        } ],
+        "tags" : "Element,Container"
+      } ],
+      "documentation" : {
+        "decisions" : [ {
+          "content" : "# 1. Record architecture decisions\n\nDate: 2025-06-17\n\n## Status\n\nAccepted\n\n## Context\n\nWe need to record the architectural decisions made on this project.\n\n## Decision\n\nWe will use Architecture Decision Records, as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions).\n\n## Consequences\n\nSee Michael Nygard's article, linked above. For a lightweight ADR toolset, see Nat Pryce's [adr-tools](https://github.com/npryce/adr-tools).\n",
+          "date" : "2025-06-17T00:00:00Z",
+          "format" : "Markdown",
+          "id" : "1",
+          "status" : "Accepted",
+          "title" : "Record architecture decisions"
+        }, {
+          "content" : "# 2. Hosting Provider Selection\n\nDate: 2025-06-17\n\n## Status\n\nAccepted\n\n## Context\n\nOur URL shortener system requires a reliable, scalable, and cost-effective hosting solution that can meet the following requirements:\n\n- Support for 1 million users creating 100 links each annually (100 million links over 3 years)\n- Fast redirect performance (<0.2 seconds latency)\n- High availability with fault tolerance (failure of two nodes shouldn't degrade performance >0.1s)\n- Support for multiple technologies (.NET 9, ScyllaDB, PostgreSQL, KeyCloak)\n- Ability to scale to handle varying traffic patterns\n- Support for seamless, zero-downtime deployments\n- Cost-effective for both development and production environments\n\nThe selected hosting provider must accommodate our C#/.NET 9 application stack, database services (ScyllaDB and PostgreSQL), and identity management services (KeyCloak).\n\n## Decision\n\nWe evaluated several cloud hosting providers based on their ability to meet our technical requirements, scalability needs, reliability standards, and cost efficiency.\n\n### Hosting Options Considered\n\n#### Option 1: AWS (Amazon Web Services)\n- **Services**: ECS/EKS for containerized applications, RDS for PostgreSQL, ElastiCache for caching, Route 53 for DNS, CloudFront for CDN\n- **ScyllaDB Option**: Managed ScyllaDB Cloud service or self-managed on EC2\n\n#### Option 2: Azure\n- **Services**: AKS for containers, Azure SQL/PostgreSQL, Redis Cache, Azure DNS, Azure CDN\n- **ScyllaDB Option**: Self-managed on Azure VMs\n\n#### Option 3: Google Cloud Platform (GCP)\n- **Services**: GKE for containers, Cloud SQL for PostgreSQL, Memorystore for caching, Cloud DNS, Cloud CDN\n- **ScyllaDB Option**: Self-managed on GCE VMs\n\n#### Option 4: DigitalOcean\n- **Services**: Kubernetes, Managed PostgreSQL, Managed Redis, Load Balancers\n- **ScyllaDB Option**: Self-managed on Droplets\n\n### Comparison Table\n\n| Criteria | AWS | Azure | GCP | DigitalOcean |\n|----------|-----|-------|-----|--------------|\n| **.NET Support** | Strong | Excellent (Microsoft platform) | Good | Good |\n| **ScyllaDB Support** | Official partnership with ScyllaDB Cloud | VM-based deployment | VM-based deployment | VM-based deployment |\n| **PostgreSQL Support** | RDS (fully managed) | Azure Database for PostgreSQL | Cloud SQL | Managed PostgreSQL |\n| **Global Presence** | Excellent (25+ regions) | Excellent (60+ regions) | Good (20+ regions) | Limited (14 regions) |\n| **Reliability/SLA** | 99.99% for most services | 99.95-99.99% | 99.95-99.99% | 99.95% |\n| **Scalability** | Excellent | Excellent | Excellent | Good |\n| **CI/CD Integration** | CodePipeline, CodeBuild | Azure DevOps, GitHub Actions | Cloud Build | Limited native options |\n| **Monitoring/Observability** | CloudWatch, X-Ray | Azure Monitor | Cloud Monitoring, Cloud Trace | Basic monitoring |\n| **Cost** | Higher, complex pricing | Medium-high | Medium, with good free tier | Lower, simpler pricing |\n| **Managed Kubernetes** | EKS ($73/month/cluster + node costs) | AKS (free control plane) | GKE ($73/month/cluster after free tier) | $12/month/node |\n\n### Cost Estimation (Monthly, Production Environment)\n\n| Provider | Compute | Databases | Networking | Other Services | Estimated Total |\n|----------|---------|-----------|------------|----------------|----------------|\n| AWS | $1,500 | $800 | $200 | $300 | $2,800 |\n| Azure | $1,400 | $750 | $180 | $250 | $2,580 |\n| GCP | $1,300 | $700 | $180 | $220 | $2,400 |\n| DigitalOcean | $900 | $450 | $150 | $100 | $1,600 |\n\nWe have decided to use **Azure** as our hosting provider for the following reasons:\n\n1. **Native .NET Integration**: As a C#/.NET 9 application, our system will benefit from Azure's first-class support for Microsoft technologies.\n2. **Comprehensive Service Offering**: Azure provides all the necessary services for our architecture components.\n3. **Global Presence**: Azure's extensive regional presence supports our latency requirements and potential future global expansion.\n4. **Zero-Downtime Deployment Support**: Azure's deployment slots and seamless scaling support our requirement for zero-downtime releases.\n5. **Identity Management**: Azure AD integrates well with KeyCloak and provides additional security options.\n6. **Managed Database Services**: Azure provides robust managed services for PostgreSQL, reducing operational overhead.\n7. **Developer Familiarity**: Our development team has significant experience with Azure.\n\nFor ScyllaDB, we will deploy a self-managed cluster on Azure VMs, as there's no managed ScyllaDB service on Azure. We'll implement appropriate monitoring and automated failover mechanisms to ensure reliability.\n\n## Consequences\n\n### Positive\n- Excellent integration with our .NET technology stack\n- Comprehensive set of services that meet all our requirements\n- Strong SLAs that align with our reliability needs\n- Good developer experience with familiar tools and documentation\n- Scalable infrastructure that can grow with our user base\n\n### Negative\n- Higher cost compared to DigitalOcean (though with more comprehensive services)\n- Need to self-manage ScyllaDB cluster, which requires additional operational expertise\n- Potential vendor lock-in with certain Azure-specific services\n\n### Mitigation Strategies\n- We will use containerization and Kubernetes to maintain some level of provider portability\n- We will implement Infrastructure as Code using Terraform to document our infrastructure and facilitate potential future migrations\n- We will establish a dedicated DevOps team member to manage the ScyllaDB cluster and automate maintenance tasks\n",
+          "date" : "2025-06-17T00:00:00Z",
+          "format" : "Markdown",
+          "id" : "2",
+          "status" : "Accepted",
+          "title" : "Hosting Provider Selection"
+        }, {
+          "content" : "# 3. Data Tier Decision\n\nDate: 2025-06-17\n\n## Status\n\nAccepted\n\n## Context\n\nThe URL shortener system requires a data tier that can handle:\n\n- Storage of 100 million shortened URLs annually (1M users × 100 links per user)\n- Retention of URLs for 3 years (total of 300M URLs at capacity)\n- Fast retrieval for redirects (< 0.2s latency requirement)\n- Tracking of click statistics (10 clicks/day/link on average)\n- High availability with fault tolerance (failure of 2 nodes must not degrade performance by more than 0.1s)\n- Automated cleanup of expired links after 3 years\n\n### Workload Calculations\n\n| Metric | Calculation | Result |\n|--------|-------------|--------|\n| Annual URL creation | 1M users × 100 URLs/user | 100M URLs/year |\n| Total URLs after 3 years | 100M URLs/year × 3 years | 300M URLs |\n| Daily URL lookups | 100M URLs × 10 clicks/day | 1B lookups/day |\n| Lookups per second | 1B lookups/day ÷ 86,400 seconds | ~11,574 lookups/second |\n| Write operations per second | 100M URLs/year ÷ (365 days × 86,400 seconds) | ~3.17 writes/second |\n| Click statistics writes per second | 1B clicks/day ÷ 86,400 seconds | ~11,574 stats writes/second |\n\n### Storage Requirements\n\n| Data Point | Size | Total Size |\n|------------|------|------------|\n| URL record (ID, original URL, short code, user ID, created date, expiry date) | ~300 bytes | 300M URLs × 300 bytes = ~90GB |\n| Click statistics (timestamp, URL ID, referrer, user agent summary) | ~100 bytes | 1B clicks/day × 100 bytes = ~100GB/day |\n| Click statistics aggregated daily | ~20 bytes | 300M URLs × 20 bytes = ~6GB |\n\n## Decision\n\nAfter evaluating multiple data storage options, we've decided to use **ScyllaDB** as our primary database solution for the URL shortener system.\n\n### Database Solution: ScyllaDB\n\nScyllaDB is a highly performant, distributed NoSQL database that is compatible with Apache Cassandra but offers significantly better performance and lower latency. We've selected ScyllaDB as our single database solution for the following key components:\n\n- URL mappings and metadata storage\n- Click statistics and analytics\n- User account information\n- Automated data expiry through TTL mechanisms\n\n### Comparison of Database Options\n\n| Feature | ScyllaDB | PostgreSQL + Redis + TimescaleDB | MongoDB | DynamoDB | Cassandra |\n|---------|----------|----------------------------------|---------|----------|-----------|\n| Query performance | Excellent | Good (requires coordination) | Good | Excellent | Good |\n| Scalability | Excellent | Good (complex) | Excellent | Excellent | Excellent |\n| High throughput | Excellent | Good | Good | Good | Good |\n| Consistency | Tunable | Strong (PostgreSQL), Eventual (Redis) | Configurable | Configurable | Tunable |\n| Low latency | Excellent (<1ms) | Good (depends on cache hit ratio) | Good | Good | Good |\n| Schema flexibility | Good | Limited | Excellent | Good | Good |\n| Time-series support | Good (with wide rows) | Excellent (with TimescaleDB) | Limited | Limited | Good |\n| TTL support | Native | Complex (requires jobs) | Limited | Yes | Yes |\n| Operational complexity | Moderate | High (multiple systems) | Moderate | Low | Moderate |\n| Multi-datacenter replication | Built-in | Complex | Available | AWS-specific | Built-in |\n| Cost | Moderate | High (multiple systems) | Moderate | High | Moderate |\n| Failure resilience | Excellent | Good (complex coordination) | Good | Excellent | Good |\n\n### ScyllaDB Advantages for URL Shortener Requirements\n\n| Requirement | How ScyllaDB Addresses It |\n|-------------|---------------------------|\n| High read throughput (~11,574 reads/sec) | ScyllaDB's shard-per-core architecture optimizes for parallel processing |\n| Low latency (<0.2s requirement) | ScyllaDB consistently delivers p99 latencies under 10ms |\n| High write throughput (~11,574 stats writes/sec) | Log-structured merge trees (LSM) optimize for write-heavy workloads |\n| URL expiration after 3 years | Native TTL support at both row and column level |\n| Click statistics tracking | Wide row model allows efficient time-series data storage |\n| Fault tolerance (2-node failure resilience) | Configurable replication factor (RF=3) ensures data availability even with 2 node failures |\n\n### Data Model\n\n```\nurls TABLE:\n- short_code (partition key)\n- original_url\n- user_id\n- created_at\n- expires_at (with TTL)\n- is_active\n\nurl_clicks_by_day TABLE:\n- short_code (partition key)\n- day (clustering key)\n- hour (clustering key)\n- click_count\n- unique_visitors\n\nurl_clicks_detail TABLE:\n- short_code (partition key)\n- timestamp (clustering key)\n- referrer\n- user_agent\n- ip_region\n- device_type\n- ttl (set to 90 days for detailed analytics)\n\nusers TABLE:\n- user_id (partition key)\n- email\n- name\n- created_at\n```\n\n### Data Tier Architecture\n\n1. **Read Path**:\n   - URL lookups use the short_code as the partition key for direct hash-based lookups\n   - ScyllaDB's shard-per-core architecture enables consistent sub-millisecond reads\n   - Read path is optimized with custom read consistency levels (LOCAL_ONE for ultra-fast lookups)\n\n2. **Write Path**:\n   - URL creation uses prepared statements for optimal performance\n   - Batch writes for click statistics to optimize write throughput\n   - Consistency level of LOCAL_QUORUM ensures durability without excessive latency\n\n3. **Analytics Path**:\n   - Two-tier approach for analytics:\n     - Detailed click data stored with TTL (90 days) in url_clicks_detail\n     - Aggregated daily statistics stored long-term in url_clicks_by_day\n   - Counters for efficient incrementing of click statistics\n\n4. **Cleanup Process**:\n   - Automatic TTL-based expiration of URLs after 3 years\n   - Automatic cleanup of detailed click statistics after 90 days\n   - Background compaction optimizes storage and cleanup operations\n\n### Deployment Architecture\n\n- Minimum 6-node ScyllaDB cluster across 3 availability zones (2 nodes per AZ)\n- Replication Factor of 3 (data replicated to all 3 AZs)\n- Consistency level of LOCAL_QUORUM for writes (ensures durability in one AZ)\n- Consistency level of LOCAL_ONE for reads (ensures fastest possible lookups)\n\n## Consequences\n\n### Advantages\n\n1. **Performance**:\n   - Consistent sub-millisecond latency for URL lookups\n   - Linear scalability for both reads and writes\n   - No need for separate caching layer - ScyllaDB's performance eliminates this requirement\n\n2. **Scalability**:\n   - Horizontal scaling by adding nodes\n   - Vertical scaling through ScyllaDB's efficient use of server resources\n   - Automatic data rebalancing when nodes are added or removed\n\n3. **Reliability**:\n   - Configurable replication factor ensures data durability\n   - Multi-AZ deployment protects against zone failures\n   - Tunable consistency levels allow balancing between performance and consistency\n\n4. **Operational Simplicity**:\n   - Single database system to maintain vs. multiple systems\n   - Built-in monitoring with Prometheus integration\n   - Compatible with Cassandra tools and drivers\n   - Automatic data management through TTL\n\n### Challenges\n\n1. **Learning Curve**:\n   - Team may need to develop expertise in NoSQL data modeling\n   - Different query patterns compared to traditional SQL\n   - Understanding consistency levels and their implications\n\n2. **Limited Transaction Support**:\n   - Lightweight transactions only (conditional updates)\n   - Multi-row/multi-table transactions not available\n   - May require application-level transaction handling\n\n3. **Query Flexibility**:\n   - Data access patterns must be known in advance\n   - Secondary indexes have performance implications\n   - Complex queries may require data duplication\n\n### Mitigation Strategies\n\n1. **Data Modeling**:\n   - Design tables around query patterns\n   - Use denormalization and duplicate data when necessary\n   - Implement materialized views for alternative access patterns\n\n2. **Consistency Management**:\n   - Use LOCAL_QUORUM for writes to ensure durability\n   - Use LOCAL_ONE for reads to optimize latency\n   - Implement application-level retry logic for edge cases\n\n3. **Monitoring and Operations**:\n   - Deploy with Prometheus and Grafana for comprehensive monitoring\n   - Implement automated backup solutions\n   - Regular maintenance and compaction strategy optimization\n\n4. **Cost Optimization**:\n   - Start with right-sized cluster based on calculations\n   - Implement auto-scaling based on load patterns\n   - Optimize instance types for read/write patterns\n",
+          "date" : "2025-06-17T00:00:00Z",
+          "format" : "Markdown",
+          "id" : "3",
+          "status" : "Accepted",
+          "title" : "Data Tier Decision"
+        }, {
+          "content" : "# 4. Web Tier Decision\n\nDate: 2025-06-17\n\n## Status\n\nAccepted\n\n## Context\n\nThe URL shortener system requires a web tier that can handle:\n\n- High-volume URL redirection traffic (approximately 11,574 requests per second)\n- User authentication and management for 1 million new users per year\n- URL creation and management (100 links per user per year)\n- Click statistics visualization and reporting\n- Consistent performance with redirect latency under 0.2 seconds\n- Seamless releases with zero downtime\n- Resilience to node failures (failure of any two nodes must not degrade performance by more than 0.1s)\n\nThese requirements inform our web tier architecture decisions, particularly in light of our chosen data tier (ScyllaDB).\n\n### Traffic Analysis\n\n| Traffic Type | Volume | Notes |\n|--------------|--------|-------|\n| URL redirects | ~11,574 requests/second | Primary traffic (1B requests/day) |\n| URL creations | ~3.17 requests/second | Low volume, higher complexity |\n| Statistics access | ~100 requests/second (estimated) | Dashboard and reporting access |\n| User management | ~30 requests/second (estimated) | Authentication, profile management |\n\n## Decision\n\nAfter evaluating multiple web tier architectures, we've decided to implement a microservices architecture using ASP.NET Core with the following components:\n\n### Web Tier Architecture\n\n1. **Frontend Layer**\n   - **User Portal SPA**: React-based single-page application for user management, URL creation, and statistics visualization\n   - **Admin Portal SPA**: React-based dashboard for system monitoring and administration\n\n2. **API Gateway Layer**\n   - **API Gateway**: YARP (Yet Another Reverse Proxy) for request routing, authentication, and rate limiting\n\n3. **Service Layer**\n   - **URL Redirect Service**: Optimized .NET Core service focused solely on URL redirection\n   - **URL Management Service**: Service for URL creation, update, and deletion\n   - **User Management Service**: Service for user authentication and profile management\n   - **Analytics Service**: Service for processing and querying click statistics\n\n4. **Infrastructure**\n   - **CDN**: Global content delivery network for static assets and edge caching\n   - **Load Balancer**: For distributing traffic across service instances\n   - **Auto-scaling Groups**: For dynamically adjusting capacity based on load\n\n### Comparison of Web Tier Architectures\n\n| Architecture | Performance | Scalability | Deployment Complexity | Development Velocity | Cost |\n|--------------|-------------|-------------|------------------------|----------------------|------|\n| Monolithic ASP.NET Core | Good | Limited | Low | High initially, decreases over time | Low initially, higher at scale |\n| Microservices with .NET Core | Excellent | Excellent | Moderate | Moderate initially, increases over time | Moderate initially, optimizable at scale |\n| Serverless Functions | Good | Excellent | Low | High | Pay-per-use, can be high with constant load |\n| Node.js with Express | Good | Good | Moderate | Moderate | Moderate |\n\n### Technology Stack Selection\n\n| Component | Technology | Justification |\n|-----------|------------|---------------|\n| API Framework | ASP.NET Core 8+ | High performance, mature ecosystem, excellent integration with cloud services |\n| Frontend Framework | React | Widespread adoption, component-based architecture, strong ecosystem |\n| API Gateway | YARP | Native .NET integration, high performance, customizable |\n| Authentication | JWT with IdentityServer4 | Industry standard, scalable, supports various authentication flows |\n| Container Orchestration | Kubernetes | Industry standard, mature ecosystem, excellent scalability |\n| Service Mesh | Linkerd | Lightweight, easy to adopt, provides observability and resilience |\n| Monitoring | Prometheus + Grafana | Comprehensive metrics collection, visualization, and alerting |\n| Logging | OpenTelemetry + Elasticsearch | Distributed tracing, structured logging, searchable |\n\n### Web Service Optimizations\n\n1. **URL Redirect Service Optimizations**:\n   - In-memory LRU cache for frequently accessed URLs\n   - Asynchronous logging of click statistics\n   - Response compression\n   - Connection pooling to ScyllaDB\n   - Minimal payload size\n   - Health checks and circuit breakers\n\n2. **Read/Write Path Separation**:\n   - Dedicated high-performance service for URL redirection (read path)\n   - Separate services for URL management and analytics (write path)\n   - Different scaling policies for read vs. write services\n\n3. **Edge Optimization**:\n   - CDN caching for static assets\n   - Edge-optimized load balancers\n   - Geographic distribution of services\n\n### Deployment Architecture\n\n- Minimum 6 instances of URL Redirect Service across 3 availability zones\n- Minimum 2 instances of other services across 2+ availability zones\n- Auto-scaling based on CPU utilization and request rate\n- Blue/Green deployment for zero-downtime releases\n\n## Consequences\n\n### Advantages\n\n1. **Performance**:\n   - Optimized URL Redirect Service ensures latency well below 0.2 seconds\n   - Horizontal scaling capability to handle traffic spikes\n   - Edge caching reduces latency for global users\n\n2. **Scalability**:\n   - Independent scaling of services based on their specific load patterns\n   - URL Redirect Service can scale to handle millions of requests per second\n   - Stateless design enables simple horizontal scaling\n\n3. **Reliability**:\n   - Multiple instances across availability zones ensure resilience\n   - Health checks and circuit breakers prevent cascading failures\n   - Auto-healing infrastructure recovers from node failures automatically\n\n4. **Maintainability**:\n   - Separation of concerns through microservices\n   - Independent deployment of services\n   - Comprehensive monitoring and observability\n\n### Challenges\n\n1. **Operational Complexity**:\n   - Managing a distributed system requires sophisticated DevOps practices\n   - Monitoring and debugging across services requires specialized tools\n   - Service coordination and communication patterns add complexity\n\n2. **Eventual Consistency**:\n   - Statistics updates are asynchronous, leading to eventual consistency\n   - Need for careful handling of data consistency across services\n\n3. **Development Overhead**:\n   - More complex development environment setup\n   - Cross-service testing requirements\n   - Need for careful API versioning and backward compatibility\n\n### Mitigation Strategies\n\n1. **DevOps Automation**:\n   - Infrastructure as Code (IaC) using Terraform or Pulumi\n   - CI/CD pipelines for automated testing and deployment\n   - Automated canary deployments and rollback capabilities\n\n2. **Observability Implementation**:\n   - Distributed tracing across all services\n   - Centralized logging with context correlation\n   - Real-time dashboards for system health monitoring\n\n3. **Developer Experience**:\n   - Local development environment with Docker Compose\n   - Service contracts and API documentation\n   - Shared libraries for common functionality\n\n4. **Performance Testing Regime**:\n   - Continuous performance testing in the CI pipeline\n   - Regular load testing simulating production scenarios\n   - Chaos engineering practices to verify fault tolerance\n",
+          "date" : "2025-06-17T00:00:00Z",
+          "format" : "Markdown",
+          "id" : "4",
+          "status" : "Accepted",
+          "title" : "Web Tier Decision"
+        } ]
+      },
+      "id" : "4",
+      "location" : "Unspecified",
+      "name" : "Url Shortener",
+      "properties" : {
+        "structurizr.dsl.identifier" : "urlshortener"
+      },
+      "relationships" : [ {
+        "description" : "Authenticates with",
+        "destinationId" : "1",
+        "id" : "15",
+        "linkedRelationshipId" : "14",
+        "sourceId" : "4",
+        "technology" : "OAUTH2"
+      }, {
+        "description" : "Sends visit statistics",
+        "destinationId" : "3",
+        "id" : "25",
+        "linkedRelationshipId" : "21",
+        "sourceId" : "4"
+      }, {
+        "description" : "Sends visit statistics",
+        "destinationId" : "2",
+        "id" : "26",
+        "linkedRelationshipId" : "21",
+        "sourceId" : "4"
+      } ],
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Url Shortener",
+  "properties" : {
+    "structurizr.groupSeparator" : "/",
+    "structurizr.dsl" : "d29ya3NwYWNlICJVcmwgU2hvcnRlbmVyIiB7CiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCiAgICAhY29uc3RhbnQgV0VCX0xBTkcgIkMjLy5ORVQgOSIKICAgICFzY3JpcHQgZ3Jvb3Z5IHsKICAgICAgd29ya3NwYWNlLm1vZGVsLmltcGxpZWRSZWxhdGlvbnNoaXBzU3RyYXRlZ3kgPSBuZXcgY29tLnN0cnVjdHVyaXpyLm1vZGVsLkNyZWF0ZUltcGxpZWRSZWxhdGlvbnNoaXBzVW5sZXNzU2FtZVJlbGF0aW9uc2hpcEV4aXN0c1N0cmF0ZWd5KCkKICAgIH0KICAgIHByb3BlcnRpZXMgewogICAgICAgICJzdHJ1Y3R1cml6ci5ncm91cFNlcGFyYXRvciIgIi8iCiAgICB9CgogICAgbW9kZWwgewogICAgICAgIGF1dGhQcm92aWRlcnMgID0gc29mdHdhcmVTeXN0ZW0gIkF1dGggUHJvdmlkZXJzIiAiR29vZ2xlLCBGYWNlYm9vaywgR2l0SHViIgogICAgCiAgICAgICAgaGl0Q291bnRlciA9IHNvZnR3YXJlU3lzdGVtICJXZWIgQW5hbHl0aWNzIiB7CiAgICAgICAgICAgIHdyaXRlQXBpID0gY29udGFpbmVyICJXcml0ZSBBUEkiCiAgICAgICAgfQogICAgCiAgICAgICAgdXJsU2hvcnRlbmVyID0gc29mdHdhcmVTeXN0ZW0gIlVybCBTaG9ydGVuZXIiIHsKICAgICAgICAgICAhYWRycyAuL2FkcnMKICAgICAgICAgICAgZ3JvdXAgREJzIHsKICAgICAgICAgICAgICAgIGxpbmtEYiA9IGNvbnRhaW5lciAiTGlua3MiICJTdG9yZXMgbGlua3MuIiAiU2N5bGxhREIiICJEYXRhYmFzZSIKICAgICAgICAgICAgICAgIHVzZXJEYiA9IGNvbnRhaW5lciAiVXNlcnMiICJTdG9yZXMgdXNlciBpbmZvLiIgIlBvc3RncmVTUUwiICJEYXRhYmFzZSIKICAgICAgICAgICAgfQogICAgCiAgICAgICAgICAgIGdyb3VwIEFQSSB7ICAgIAogICAgICAgICAgICAgICAgcmVhZEFwaSA9IGNvbnRhaW5lciAiUmVhZCBBUEkiICJSZWRpcmVjdHMgc2hvcnQgVVJMcyB0byBsb25nIG9uZXMuIiAke1dFQl9MQU5HfSB7CiAgICAgICAgICAgICAgICAgICAgY2FjaGUgPSBjb21wb25lbnQgIkluLU1lbW9yeSBMUlUgQ2FjaGUiICJJbi1NZW1vcnkiCiAgICAgICAgICAgICAgICAgICAgdXJsQ29udHJvbGxlciA9IGNvbXBvbmVudCAiVXJsQ29udHJvbGxlciIKICAgICAgICAgICAgICAgICAgICB1cmxDb250cm9sbGVyIC0+IGNhY2hlICJSZWFkcyBVUkxzIGZyb20gYW5kIHdyaXRlcyB0byIKICAgICAgICAgICAgICAgICAgICB1cmxDb250cm9sbGVyIC0+IGxpbmtEYiAiUmVhZHMgVVJMcyBmcm9tIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICBhdXRoQXBpID0gY29udGFpbmVyICJBdXRoICYgSWRlbnRpdHkgTWFuYWdlbWVudCIgIlByb3ZpZGVzIGF1dGhlbnRpY2F0aW9uLCB1c2VyIG1hbmFnZW1lbnQsIGFuZCBmaW5lLWdyYWluZWQgYXV0aG9yaXphdGlvbi4iICJLZXlDbG9hayIKICAgICAgICAgICAgICAgIGF1dGhBcGkgLT4gYXV0aFByb3ZpZGVycyAiQXV0aGVudGljYXRlcyB3aXRoIiAiT0FVVEgyIgogICAgICAgICAgICAgICAgYXV0aEFwaSAtPiB1c2VyRGIgIkF1dGggJiBJZGVudGl0eSBtYW5hZ2VtZW50IgogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICB3cml0ZUFwaSA9IGNvbnRhaW5lciAiV3JpdGUgQVBJIiAiQ3JlYXRlcyBzaG9ydCBVUkxzLiIgJHtXRUJfTEFOR30gewogICAgICAgICAgICAgICAgICAgIHVybENvbnRyb2xsZXIgPSBjb21wb25lbnQgIlVybENvbnRyb2xsZXIiCiAgICAgICAgICAgICAgICAgICAgdXJsQ29udHJvbGxlciAtPiBsaW5rRGIgIlNhdmVzIG5ldyBsaW5rcyB0byB0aGUgZGIiCiAgICAgICAgICAgICAgICB9ICAgCiAgICAgICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgICAgIHJlYWRBcGkudXJsQ29udHJvbGxlciAtPiBoaXRDb3VudGVyLndyaXRlQXBpICJTZW5kcyB2aXNpdCBzdGF0aXN0aWNzIgogICAgICAgICAgICAKICAgICAgICAgICAgd2ViID0gY29udGFpbmVyICJXZWIgQXBwIiAiUHJvdmlkZXMgdGhlIFVSTCBzaG9ydGVuZXIgZnVuY3Rpb25hbGl0eSB0byB1c2VycyB2aWEgdGhlaXIgd2ViIGJyb3dzZXJzLiIKICAgICAgICAgICAgd2ViIC0+IGF1dGhBcGkgIkF1dGhlbnRpY2F0ZXMgdGhlIHVzZXIiICJIVFRQUyIKICAgICAgICAgICAgd2ViIC0+IHdyaXRlQXBpLnVybENvbnRyb2xsZXIgIlNlbmRzIEpTT04gcmVxdWVzdHMiICJIVFRQUyIKICAgICAgICB9CiAgICB9CiAgICAKICAgIHZpZXdzIHsKICAgICAgICB0aGVtZSBkZWZhdWx0CiAgICB9CiAgICAKICAgICFzY3JpcHQgZ3Jvb3Z5IHsKICAgICAgICB3b3Jrc3BhY2Uudmlld3MuY3JlYXRlRGVmYXVsdFZpZXdzKCkKICAgICAgICB3b3Jrc3BhY2Uudmlld3Mudmlld3MuZmluZEFsbCB7IGl0IGluc3RhbmNlb2YgY29tLnN0cnVjdHVyaXpyLnZpZXcuTW9kZWxWaWV3IH0uZWFjaCB7IGl0LmRpc2FibGVBdXRvbWF0aWNMYXlvdXQoKSB9CiAgICB9Cn0K"
+  },
+  "views" : {
+    "componentViews" : [ {
+      "containerId" : "7",
+      "dimensions" : {
+        "height" : 1558,
+        "width" : 2504
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 1079,
+        "y" : 929
+      }, {
+        "id" : "5",
+        "x" : 1829,
+        "y" : 929
+      }, {
+        "id" : "8",
+        "x" : 329,
+        "y" : 929
+      }, {
+        "id" : "9",
+        "x" : 329,
+        "y" : 329
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-001",
+      "order" : 5,
+      "paperSize" : "A4_Landscape",
+      "relationships" : [ {
+        "id" : "10"
+      }, {
+        "id" : "11"
+      }, {
+        "id" : "22"
+      } ]
+    }, {
+      "containerId" : "17",
+      "dimensions" : {
+        "height" : 1916,
+        "width" : 1108
+      },
+      "elements" : [ {
+        "id" : "5",
+        "x" : 329,
+        "y" : 1408
+      }, {
+        "id" : "18",
+        "x" : 329,
+        "y" : 808
+      }, {
+        "id" : "27",
+        "x" : 329,
+        "y" : 208
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-002",
+      "order" : 6,
+      "paperSize" : "A5_Portrait",
+      "relationships" : [ {
+        "id" : "19"
+      }, {
+        "id" : "29"
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "lastSavedView" : "Container-002",
+      "styles" : { },
+      "terminology" : { },
+      "themes" : [ "https://static.structurizr.com/themes/default/theme.json" ]
+    },
+    "containerViews" : [ {
+      "dimensions" : {
+        "height" : 2262,
+        "width" : 4120
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 80,
+        "y" : 105
+      }, {
+        "id" : "2",
+        "x" : 2700,
+        "y" : 800
+      }, {
+        "id" : "5",
+        "x" : 1295,
+        "y" : 1510
+      }, {
+        "id" : "6",
+        "x" : 685,
+        "y" : 1505
+      }, {
+        "id" : "7",
+        "x" : 1910,
+        "y" : 775
+      }, {
+        "id" : "13",
+        "x" : 685,
+        "y" : 790
+      }, {
+        "id" : "17",
+        "x" : 1300,
+        "y" : 785
+      }, {
+        "id" : "27",
+        "x" : 965,
+        "y" : 115
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Container-001",
+      "order" : 4,
+      "paperSize" : "A3_Landscape",
+      "relationships" : [ {
+        "id" : "12"
+      }, {
+        "id" : "14"
+      }, {
+        "id" : "16"
+      }, {
+        "id" : "20"
+      }, {
+        "id" : "24"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "30"
+      } ],
+      "softwareSystemId" : "4"
+    }, {
+      "dimensions" : {
+        "height" : 1420,
+        "width" : 1108
+      },
+      "elements" : [ {
+        "id" : "3",
+        "x" : 329,
+        "y" : 808
+      }, {
+        "id" : "4",
+        "x" : 329,
+        "y" : 208
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Container-002",
+      "order" : 8,
+      "paperSize" : "A6_Portrait",
+      "relationships" : [ {
+        "id" : "25"
+      } ],
+      "softwareSystemId" : "2"
+    } ],
+    "systemContextViews" : [ {
+      "dimensions" : {
+        "height" : 1748,
+        "width" : 2480
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 1015,
+        "y" : 724
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-001",
+      "order" : 2,
+      "paperSize" : "A5_Landscape",
+      "relationships" : [ {
+        "id" : "15"
+      } ],
+      "softwareSystemId" : "1"
+    }, {
+      "dimensions" : {
+        "height" : 1316,
+        "width" : 1616
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 208,
+        "y" : 808
+      }, {
+        "id" : "2",
+        "x" : 958,
+        "y" : 808
+      }, {
+        "id" : "4",
+        "x" : 583,
+        "y" : 208
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-002",
+      "order" : 3,
+      "paperSize" : "A5_Landscape",
+      "relationships" : [ {
+        "id" : "15"
+      }, {
+        "id" : "26"
+      } ],
+      "softwareSystemId" : "4"
+    }, {
+      "dimensions" : {
+        "height" : 1316,
+        "width" : 866
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 208,
+        "y" : 808
+      }, {
+        "id" : "4",
+        "x" : 208,
+        "y" : 208
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemContext-003",
+      "order" : 7,
+      "paperSize" : "A6_Portrait",
+      "relationships" : [ {
+        "id" : "26"
+      } ],
+      "softwareSystemId" : "2"
+    } ],
+    "systemLandscapeViews" : [ {
+      "dimensions" : {
+        "height" : 1316,
+        "width" : 1616
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 208,
+        "y" : 808
+      }, {
+        "id" : "2",
+        "x" : 958,
+        "y" : 808
+      }, {
+        "id" : "4",
+        "x" : 583,
+        "y" : 208
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "generatedKey" : true,
+      "key" : "SystemLandscape-001",
+      "order" : 1,
+      "paperSize" : "A5_Landscape",
+      "relationships" : [ {
+        "id" : "15"
+      }, {
+        "id" : "26"
+      } ]
+    } ]
+  }
+}

@@ -1,2 +1,7 @@
+## Key Takeaways
+
+
+## Links
 - [Code Assistants Leaderboard as of April 2025](https://github.com/epam/AIRUN-Engineering-Benchmark/blob/main/pages/sandbox-test/code-assistants-2025.md)
 - [A Minimal Approach to Architecture as Code: Documenting the Modern Way](https://github.com/max-arshinov/masad)
+
