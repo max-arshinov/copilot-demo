@@ -16,10 +16,4 @@
         <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.3.1" />
     </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\UrlShortener.ReadApi\UrlShortener.ReadApi.csproj" />
-        <ProjectReference Include="..\UrlShortener.WriteApi\UrlShortener.WriteApi.csproj" />
-        <ProjectReference Include="..\UrlShortener.Web\UrlShortener.Web.csproj" />
-    </ItemGroup>
-
 </Project>
