@@ -1,0 +1,8 @@
+services:
+  target-architecture:
+    container_name: url-shortener
+    image: structurizr/lite
+    volumes:
+      - .:/usr/local/structurizr
+    ports:
+      - "8081:8080"

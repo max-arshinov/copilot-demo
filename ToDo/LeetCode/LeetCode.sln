@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft", "Microsoft", "{38394B01-52CF-4D21-A93E-08873C9B807A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. Median of Two Sorted Arrays", "4. Median of Two Sorted Arrays\4. Median of Two Sorted Arrays.csproj", "{35394EBB-1886-4C2E-85ED-C65F2806D47D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "25. Reverse Nodes in k-Group", "25. Reverse Nodes in k-Group\25. Reverse Nodes in k-Group.csproj", "{FC38D44D-FF16-484B-952A-F583AD1AF7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "42. Trapping Rain Water", "42. Trapping Rain Water\42. Trapping Rain Water.csproj", "{12B373B7-34FC-4356-9286-B12F73368C99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "84. Largest Rectangle in Histogram", "84. Largest Rectangle in Histogram\84. Largest Rectangle in Histogram.csproj", "{D51E4A1D-B8EC-4B25-B2C5-A8BC603BB4E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hard", "Hard", "{0B5F00E6-5F1C-4D3D-83E1-0E2702280312}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35394EBB-1886-4C2E-85ED-C65F2806D47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35394EBB-1886-4C2E-85ED-C65F2806D47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35394EBB-1886-4C2E-85ED-C65F2806D47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35394EBB-1886-4C2E-85ED-C65F2806D47D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC38D44D-FF16-484B-952A-F583AD1AF7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC38D44D-FF16-484B-952A-F583AD1AF7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC38D44D-FF16-484B-952A-F583AD1AF7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC38D44D-FF16-484B-952A-F583AD1AF7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12B373B7-34FC-4356-9286-B12F73368C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12B373B7-34FC-4356-9286-B12F73368C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12B373B7-34FC-4356-9286-B12F73368C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12B373B7-34FC-4356-9286-B12F73368C99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51E4A1D-B8EC-4B25-B2C5-A8BC603BB4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51E4A1D-B8EC-4B25-B2C5-A8BC603BB4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51E4A1D-B8EC-4B25-B2C5-A8BC603BB4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51E4A1D-B8EC-4B25-B2C5-A8BC603BB4E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B5F00E6-5F1C-4D3D-83E1-0E2702280312} = {38394B01-52CF-4D21-A93E-08873C9B807A}
+		{35394EBB-1886-4C2E-85ED-C65F2806D47D} = {0B5F00E6-5F1C-4D3D-83E1-0E2702280312}
+		{FC38D44D-FF16-484B-952A-F583AD1AF7C8} = {0B5F00E6-5F1C-4D3D-83E1-0E2702280312}
+		{12B373B7-34FC-4356-9286-B12F73368C99} = {0B5F00E6-5F1C-4D3D-83E1-0E2702280312}
+		{D51E4A1D-B8EC-4B25-B2C5-A8BC603BB4E2} = {0B5F00E6-5F1C-4D3D-83E1-0E2702280312}
+	EndGlobalSection
+EndGlobal
