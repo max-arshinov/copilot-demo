@@ -5,6 +5,7 @@
 
 ## Why GitHub Copilot Agent Mode?
 
+- The next essential instrument in your developer toolkit — just like when JetBrains automated refactorings changed the way we write code.
 - Integrates with your favorite IDE
 - Arguably, can compete with Cursor and Windsurf feature-wise
 
