@@ -5,11 +5,11 @@
 
 ## Why GitHub Copilot Agent Mode?
 
-> Acting as an autonomous peer programmer, it performs multi-step coding tasks at your command — analyzing your codebase, reading relevant files, proposing file edits, and running terminal commands and tests. It responds to compile and lint errors, monitors terminal and test output, and auto-corrects in a loop until the task is completed
-
 - Integrates with your favorite IDE
 - Arguably, can compete with Cursor and Windsurf feature-wise
 
+> Acting as an autonomous peer programmer, it performs multi-step coding tasks at your command — analyzing your codebase, reading relevant files, proposing file edits, and running terminal commands and tests. It responds to compile and lint errors, monitors terminal and test output, and auto-corrects in a loop until the task is completed
+> 
 ![Code Assistants Leaderboard as of April 2025 by EPAM](https://github.com/epam/AIRUN-Engineering-Benchmark/raw/main/images/sandbox-test/code-assistants-performance-engineering-benchmark-detailed-apr-25-3.png)
 
 See the [Code Assistants Leaderboard as of April 2025](https://github.com/epam/AIRUN-Engineering-Benchmark/blob/main/pages/sandbox-test/code-assistants-2025.md) for more details.
