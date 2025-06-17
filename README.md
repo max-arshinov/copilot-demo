@@ -15,7 +15,7 @@
 
 See the [Code Assistants Leaderboard as of April 2025](https://github.com/epam/AIRUN-Engineering-Benchmark/blob/main/pages/sandbox-test/code-assistants-2025.md) for more details.
 
-## Tasks
+## Agenda
 
 - Solve 2-3 "hard" LeetCode problems with Copilot
 - Implement unit tests for the solutions
