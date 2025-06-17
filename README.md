@@ -23,6 +23,8 @@ See the [Code Assistants Leaderboard as of April 2025](https://github.com/epam/A
 - Implement the service using Aspire
 - Implement [integration tests](https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-9.0&pivots=xunit) for the service
 
+![Architecture design process](./architecture.png)
+
 ## Key Takeaways
 
 - Use [atomic git commits](https://www.aleksandrhovhannisyan.com/blog/atomic-git-commits/)

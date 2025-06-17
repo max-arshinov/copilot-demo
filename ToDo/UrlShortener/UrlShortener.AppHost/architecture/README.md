@@ -14,7 +14,7 @@
 
 ### ✅ Task
 
-- [ ] Perform back-of-the-napkin calculations.
+- [ ] Perform back-of-the-envelope calculations.
 - [ ] Choose and justify a data storage model, including:
     - Storage and cleanup of expired links
     - Storage and update of click statistics
