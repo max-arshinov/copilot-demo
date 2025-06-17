@@ -28,6 +28,10 @@ See the [Code Assistants Leaderboard as of April 2025](https://github.com/epam/A
 
 ## Key Takeaways
 
+These tools are collaborative partners, not substitutes for your expertise. They free up your time and mental energy for the creative and critical tasks that only a human developer can do. Adopting agentic tools means working smarter, not handing over your craft.
+
+**Embrace them as trusted assistants—another upgrade to your toolkit—not a replacement, but an amplifier of your abilities.**
+
 - Use [atomic git commits](https://www.aleksandrhovhannisyan.com/blog/atomic-git-commits/)
 - Do one thing at a time
 - Avoid large tasks
